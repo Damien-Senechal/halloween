@@ -17,6 +17,7 @@ class Tableau1 extends Phaser.Scene{
         //ground (premier plan noir)
         this.load.image('gMid', 'assets/level/ground/g-mid.png');
         this.load.image('gRight', 'assets/level/ground/g-right.png');
+        this.load.image('gLeft', 'assets/level/ground/g-left.png');
         //Ici on charge les arbres
         for(let i=1; i<=3; i++){
             this.load.image('gTree'+i, 'assets/level/ground/g-tree-'+i+'.png');
@@ -29,6 +30,14 @@ class Tableau1 extends Phaser.Scene{
         for(let i=1; i<=2; i++){
             this.load.image('gMushroom'+i, 'assets/level/ground/g-mushroom'+i+'.png');
         }
+
+        this.load.image('bridge', 'assets/level/ground/g-wooden-bridge.png');
+
+        this.load.image('water', 'assets/level/ground/g-water.png');
+
+        this.load.image('waterGrass', 'assets/level/ground/g-spike-1.png');
+
+        this.load.image('box', 'assets/level/ground/g-box-2.png');
 
         //au lieu d'écrire 5 lignes quasi identiques, on charge l'herbe avec une boucle
         // ALGO : ceci est une boucle
@@ -122,6 +131,48 @@ class Tableau1 extends Phaser.Scene{
          */
         this.groundContainer=this.add.container(0,0);
         /**
+         * Herbe dans l'eau
+         * @type {Phaser.GameObjects.Image}
+         */
+        let waterGrass=this.add.image(600, 550, 'waterGrass').setOrigin(0, 1);
+        //bridge.setTintFill(0x0FFF00);
+        waterGrass.setScale(1);
+        this.groundContainer.add(waterGrass);
+        /**
+         * Herbe dans l'eau 2
+         * @type {Phaser.GameObjects.Image}
+         */
+        let waterGrass2=this.add.image(450, 550, 'waterGrass').setOrigin(0, 1);
+        //bridge.setTintFill(0x0FFF00);
+        waterGrass.setScale(1);
+        this.groundContainer.add(waterGrass2);
+        /**
+         * Eau
+         * @type {Phaser.GameObjects.Image}
+         */
+        let water=this.add.image(450, 625, 'water').setOrigin(0, 1);
+        //bridge.setTintFill(0x0FFF00);
+        water.setScale(1);
+        this.groundContainer.add(water);
+        /**
+         * Pont au millieu
+         * @type {Phaser.GameObjects.Image}
+         */
+        let bridge=this.add.image(410, 380, 'bridge').setOrigin(0, 1);
+        //bridge.setTintFill(0x0FFF00);
+        bridge.setScale(0.8);
+        bridge.angle=5;
+        this.groundContainer.add(bridge);
+        /**
+         * Boite sur le pont
+         * @type {Phaser.GameObjects.Image}
+         */
+        let box=this.add.image(500, 360, 'box').setOrigin(0, 1);
+        //bridge.setTintFill(0x0FFF00);
+        box.setScale(.8)
+        box.angle=5;
+        this.groundContainer.add(box);
+        /**
          * Arbre
          * @type {Phaser.GameObjects.Image}
          */
@@ -136,6 +187,15 @@ class Tableau1 extends Phaser.Scene{
          */
         let tree2=this.add.image(150,410, 'gTree2').setOrigin(0,1);
         tree2.setScale(-0.9, 0.9);
+        //tree1.setTintFill(0xFF0000); // pratique pour dbugger
+        tree2.angle=0;
+        this.groundContainer.add(tree2);
+        /**
+         * Arbre a droite de l'ecran
+         * @type {Phaser.GameObjects.Image}
+         */
+        let tree3=this.add.image(970,410, 'gTree2').setOrigin(0,1);
+        tree3.setScale(-0.9, 0.9);
         //tree1.setTintFill(0xFF0000); // pratique pour dbugger
         tree2.angle=0;
         this.groundContainer.add(tree2);
@@ -184,17 +244,31 @@ class Tableau1 extends Phaser.Scene{
         let gMid3=this.add.image(gMid2.x+gMid2.width,350, 'gRight').setOrigin(0,0);
         this.groundContainer.add(gMid3);
         /**
+         * Terrain 4
+         * @type {Phaser.GameObjects.Image}
+         */
+        let gMid4=this.add.image(800,380, 'gLeft').setOrigin(0,0);
+        gMid4.setScale(1, -1);
+        gMid4.angle=90;
+        this.groundContainer.add(gMid4);
+        /**
          * De l'herbe en textures qui se répète
          * @type {Phaser.GameObjects.TileSprite}
          */
-        //let grass=this.add.tileSprite(0,370,gMid3.x+gMid3.width-40,50,'g-grass-1').setOrigin(0,1)
-        //this.groundContainer.add(grass);
+        let grass=this.add.tileSprite(0,370,gMid3.x+gMid3.width-40,50,'g-grass-1').setOrigin(0,1)
+        this.groundContainer.add(grass);
+        /**
+         * De l'herbe en textures qui se répète
+         * @type {Phaser.GameObjects.TileSprite}
+         */
+        let grass3=this.add.tileSprite(820,400,gMid4.width,50,'g-grass-1').setOrigin(0,1)
+        this.groundContainer.add(grass3);
         /**
          * encore de l'herbe
          * @type {Phaser.GameObjects.TileSprite}
          */
-        //let grass2=this.add.tileSprite(0,370,gMid3.x+gMid3.width-40,50,'g-grass-3').setOrigin(0,1)
-        //this.groundContainer.add(grass2);
+        let grass2=this.add.tileSprite(0,370,gMid3.x+gMid3.width-40,50,'g-grass-3').setOrigin(0,1)
+        this.groundContainer.add(grass2);
         /**
          * filtre type film au premier plan
          * @type {Phaser.GameObjects.Sprite}
