@@ -111,6 +111,7 @@ class Tableau1 extends Phaser.Scene{
             frameRate: 16,
             repeat: -1
         });
+
         this.bgAnimation.play('backgroundAnim');
 
         //--------------background 2 (tout au fond et flou)--------------------
@@ -558,7 +559,22 @@ class Tableau1 extends Phaser.Scene{
             repeat: -1
         });
 
+        this.filterSnow = this.add.sprite(0, 0).setOrigin(0,0);
+        this.anims.create({
+            key: 'snow',
+            frames: [
+                {key:'filterSnow1'},
+                {key:'filterSnow2'},
+                {key:'filterSnow3'},
+                {key:'filterSnow4'},
+                {key:'filterSnow5'},
+            ],
+            frameRate: 16,
+            repeat: -1
+        });
+
         this.filterFilm.play('film');
+        this.filterSnow.play('snow');
 
 
         //TODO élève faire une animation du même genre que filter mais pour bgAnimationA
