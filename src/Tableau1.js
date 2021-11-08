@@ -75,6 +75,10 @@ class Tableau1 extends Phaser.Scene{
             this.load.image('filterBloody'+i, 'assets/level/filters/bloody/frame'+i+'.png')
         }
 
+        for(let i=1; i<=5; i++){
+            this.load.image('filterSnow'+i, 'assets/level/weather/snow/frame'+i+'.png')
+        }
+
         //texture au fond  TODO élève : faire une boucle pour charger les 3 images et démontrer par la même que vous savez aller au plus simple
         let lettre = ['a', 'b', 'c'];
         //this.load.image('bg-animation-a', 'assets/level/background-2/bg-animation/bg-animation-a.png');
