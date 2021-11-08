@@ -49,6 +49,10 @@ class Tableau1 extends Phaser.Scene{
 
         this.load.image('liane', 'assets/level/ground/g-vine-a.png');
 
+        this.load.image('groundTree', 'assets/level/ground/g-fellen-tree-1.png');
+
+        this.load.image('bgBridge', 'assets/level/background-1/bg-wooden-bridge.png');
+
         //au lieu d'écrire 5 lignes quasi identiques, on charge l'herbe avec une boucle
         // ALGO : ceci est une boucle
         for(let i=1;i<=5;i++){
@@ -61,6 +65,10 @@ class Tableau1 extends Phaser.Scene{
         this.load.image('filterFilm3', 'assets/level/filters/film/frame-3.png');*/
         for(let i=1; i<=3; i++){
             this.load.image('filterFilm'+i, 'assets/level/filters/film/frame-'+i+'.png')
+        }
+
+        for(let i=1; i<=3; i++){
+            this.load.image('filterBloody'+i, 'assets/level/filters/bloody/frame'+i+'.png')
         }
 
         //texture au fond  TODO élève : faire une boucle pour charger les 3 images et démontrer par la même que vous savez aller au plus simple
@@ -164,6 +172,30 @@ class Tableau1 extends Phaser.Scene{
         bg1Terrain5.angle = -5;
         this.bg1Container.add(bg1Terrain5);
         /**
+         * Terrain en dessous de bg1Terrain4
+         * @type {Phaser.GameObjects.Image}
+         */
+        let bg1Terrain7=this.add.image(220,450, 'bg1-terrain-3').setOrigin(0,0);
+        bg1Terrain7.setScale(1)
+        bg1Terrain7.angle = -5;
+        this.bg1Container.add(bg1Terrain7);
+        /**
+         * Terrain en dessous de bg1Terrain4
+         * @type {Phaser.GameObjects.Image}
+         */
+        let bg1Terrain8=this.add.image(1170,300, 'bg1-terrain-3').setOrigin(0,0);
+        bg1Terrain8.setScale(1)
+        bg1Terrain8.angle = -5;
+        this.bg1Container.add(bg1Terrain8);
+        /**
+         * Terrain en dessous de bg1Terrain4
+         * @type {Phaser.GameObjects.Image}
+         */
+        let bg1Terrain6=this.add.image(1200,250, 'bg1-terrain-3').setOrigin(0,0);
+        bg1Terrain6.setScale(.5)
+        bg1Terrain6.angle = -5;
+        this.bg1Container.add(bg1Terrain6);
+        /**
          * Arbre a gauche 1
          * @type {Phaser.GameObjects.Image}
          */
@@ -179,6 +211,22 @@ class Tableau1 extends Phaser.Scene{
         bg1Tree2.setScale(0.5)
         //bg1Tree2.angle = -5;
         this.bg1Container.add(bg1Tree2);
+        /**
+         * pont
+         * @type {Phaser.GameObjects.Image}
+         */
+        let bg1Bridge=this.add.image(900,310, 'bgBridge').setOrigin(0,1);
+        bg1Bridge.setScale(1)
+        //bg1Bridge.angle = -5;
+        this.bg1Container.add(bg1Bridge);
+        /**
+         * arbre
+         * @type {Phaser.GameObjects.Image}
+         */
+        let bg1Tree3=this.add.image(840,310, 'bg1-tree-1').setOrigin(0,1);
+        bg1Tree3.setScale(.6)
+        //bg1Bridge.angle = -5;
+        this.bg1Container.add(bg1Tree3);
 
         //-------------ground (premier plan noir)---------------------------
 
@@ -203,6 +251,22 @@ class Tableau1 extends Phaser.Scene{
         //bridge.setTintFill(0x0FFF00);
         waterGrass2.setScale(-1.2, 1.2);
         this.groundContainer.add(waterGrass2);
+        /**
+         * Herbe dans l'eau 2
+         * @type {Phaser.GameObjects.Image}
+         */
+        let waterGrass3=this.add.image(1790, 550, 'waterGrass').setOrigin(0, 1);
+        //bridge.setTintFill(0x0FFF00);
+        waterGrass3.setScale(-1.2, 1.2);
+        this.groundContainer.add(waterGrass3);
+        /**
+         * Herbe dans l'eau 2
+         * @type {Phaser.GameObjects.Image}
+         */
+        let waterGrass4=this.add.image(1900, 550, 'waterGrass').setOrigin(0, 1);
+        //bridge.setTintFill(0x0FFF00);
+        waterGrass4.setScale(-1.2, 1.2);
+        this.groundContainer.add(waterGrass4);
         /**
          * Eau
          * @type {Phaser.GameObjects.Image}
@@ -257,6 +321,22 @@ class Tableau1 extends Phaser.Scene{
         tree3.angle=-5;
         this.groundContainer.add(tree3);
         /**
+         * Arbre a droite de l'ecran
+         * @type {Phaser.GameObjects.Image}
+         */
+        let tree4=this.add.image(1100,410, 'gTree2').setOrigin(0,1);
+        tree4.setScale(.7);
+        //tree1.setTintFill(0xFF0000); // pratique pour dbugger
+        this.groundContainer.add(tree4);
+        /**
+         * rocher
+         * @type {Phaser.GameObjects.Image}
+         */
+        let stone4=this.add.image(1100,380, 'gStone1').setOrigin(0,1);
+        stone4.setScale(2);
+        //tree1.setTintFill(0xFF0000); // pratique pour dbugger
+        this.groundContainer.add(stone4);
+        /**
          * Rocher a gauche du pont
          * @type {Phaser.GameObjects.Image}
          */
@@ -290,6 +370,15 @@ class Tableau1 extends Phaser.Scene{
         mushroom1.angle=12;
         this.groundContainer.add(mushroom1);
         /**
+         * Champignon a gauche du pont
+         * @type {Phaser.GameObjects.Image}
+         */
+        let mushroom2=this.add.image(1300, 400, 'gMushroom1').setOrigin(0, 1);
+        //mushroom1.setScale(-1, 1);
+        //mushroom1.setTintFill(0x0FFF00);
+        mushroom2.angle=-12;
+        this.groundContainer.add(mushroom2);
+        /**
          * Terrain 1
          * @type {Phaser.GameObjects.Image}
          */
@@ -317,6 +406,22 @@ class Tableau1 extends Phaser.Scene{
         gMid4.angle=90;
         this.groundContainer.add(gMid4);
         /**
+         * Terrain 5
+         * @type {Phaser.GameObjects.Image}
+         */
+        let gMid5=this.add.image(1552,570, 'gRight').setOrigin(0,0);
+        gMid5.setScale(1, -1);
+        gMid5.angle =-90;
+        this.groundContainer.add(gMid5);
+        /**
+         * Terrain 6
+         * @type {Phaser.GameObjects.Image}
+         */
+        let gMid6=this.add.image(1880,600, 'gRight').setOrigin(0,0);
+        gMid6.setScale(1, 1);
+        gMid6.angle =-90;
+        this.groundContainer.add(gMid6);
+        /**
          * De l'herbe en textures qui se répète a gauche
          * @type {Phaser.GameObjects.TileSprite}
          */
@@ -326,9 +431,15 @@ class Tableau1 extends Phaser.Scene{
          * De l'herbe en textures qui se répète a droite
          * @type {Phaser.GameObjects.TileSprite}
          */
-        let grass3=this.add.tileSprite(820,385,gMid4.width,50,'g-grass-1').setOrigin(0,1)
+        let grass3=this.add.tileSprite(820,385,700,50,'g-grass-1').setOrigin(0,1)
         this.groundContainer.add(grass3);
         //grass3.angle = 5;
+        /**
+         * De l'herbe en textures qui se répète a droite
+         * @type {Phaser.GameObjects.TileSprite}
+         */
+        let grass4=this.add.tileSprite(820,385,700,50,'g-grass-2').setOrigin(0,1)
+        this.groundContainer.add(grass4);
         /**
          * encore de l'herbe
          * @type {Phaser.GameObjects.TileSprite}
@@ -351,10 +462,18 @@ class Tableau1 extends Phaser.Scene{
         liane2.angle = -5;
         this.groundContainer.add(liane2);
         /**
+         * arbre couché
+         * @type {Phaser.GameObjects.Image}
+         */
+        let groundTree=this.add.image(1500,280, 'groundTree').setOrigin(0,0);
+        groundTree.setScale(1)
+        groundTree.angle = 5;
+        this.groundContainer.add(groundTree);
+        /**
          * filtre type film au premier plan
          * @type {Phaser.GameObjects.Sprite}
          */
-        this.filterFilm = this.add.sprite(0, 0, 'filterFilm1').setOrigin(0,0);
+        this.filterFilm = this.add.sprite(0, 0).setOrigin(0,0);
         //animation de 3 images
         this.anims.create({
             key: 'film',
@@ -366,7 +485,28 @@ class Tableau1 extends Phaser.Scene{
             frameRate: 16,
             repeat: -1
         });
+
+
+        /**
+         * filtre type bloody
+         * @type {Phaser.GameObjects.Sprite}
+         */
+
+        this.filterBloody = this.add.sprite(0, 0).setOrigin(0,0);
+        //animation de 3 images
+        this.anims.create({
+            key: 'bloody',
+            frames: [
+                {key:'filterBloody1'},
+                {key:'filterBloody1'},
+                {key:'filterBloody1'},
+            ],
+            frameRate: 16,
+            repeat: -1
+        });
+
         this.filterFilm.play('film');
+
 
         //TODO élève faire une animation du même genre que filter mais pour bgAnimationA
 
@@ -378,7 +518,7 @@ class Tableau1 extends Phaser.Scene{
          * @type {number}
          */
         this.speed=0;
-        let acceleration = 100;
+        let acceleration = 4;
         //initialise ce qui se passe avec le clavier
         this.initKeyboard();
         // Définit l'espace de déplacement de la caméra
@@ -386,9 +526,10 @@ class Tableau1 extends Phaser.Scene{
         //définit à quelles vitesse se déplacent nos différents plans
         this.bgAnimation.scrollFactorX=0;
         this.filterFilm.scrollFactorX=0;
+        this.filterBloody.scrollFactorX=0;
         this.bg2Container.scrollFactorX=0.2*acceleration;
         this.bg1Container.scrollFactorX=0.4*acceleration;
-        this.groundContainer.scrollFactorX=1*acceleration;
+        this.groundContainer.scrollFactorX=acceleration;
     }
     /**
      * Définit ce qui se passe quand on appuie ou relache une touche du clavier
@@ -426,6 +567,19 @@ class Tableau1 extends Phaser.Scene{
     update(){
         //déplacement de la caméra
         this.cameras.main.scrollX+=this.speed; // on aurait pu écrire : this.cameras.main.scrollX= this.cameras.main.scrollX + this.speed;
+        console.log(this.cameras.main.scrollX);
+        if(this.cameras.main.scrollX >=250){
+            this.filterBloody.play('bloody', true)
+            //this.filterFilm.play('film', false)
+            /*this.filterBloody.frame = [
+                {key:'filterBloody1'},
+                {key:'filterBloody1'},
+                {key:'filterBloody1'},
+            ];*/
+        }
+        else if (this.cameras.main.scrollX <250){
+            this.filterBloody.stop();
+        }
 
         //petit effet de vibrance sur le filtre film au tout premier plan
         this.filterFilm.setAlpha(Phaser.Math.Between(95,100)/100)
