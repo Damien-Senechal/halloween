@@ -39,6 +39,10 @@ class Tableau1 extends Phaser.Scene{
             this.load.image('gMushroom'+i, 'assets/level/ground/g-mushroom'+i+'.png');
         }
 
+        for(let i=1; i<=5; i++){
+            this.load.image('z'+i, 'assets/zombies/z'+i+'.png');
+        }
+
         this.load.image('bridge', 'assets/level/ground/g-wooden-bridge.png');
 
         this.load.image('water', 'assets/level/ground/g-water.png');
@@ -302,6 +306,51 @@ class Tableau1 extends Phaser.Scene{
         //tree1.setTintFill(0xFF0000); // pratique pour dbugger
         tree1.angle=0;
         this.groundContainer.add(tree1);
+        /**
+         * z1
+         * @type {Phaser.GameObjects.Image}
+         */
+        let z1=this.add.image(180,370, 'z1').setOrigin(0,1);
+        z1.setScale(0.65);
+        //tree1.setTintFill(0xFF0000); // pratique pour dbugger
+        z1.angle=0;
+        this.groundContainer.add(z1);
+        /**
+         * z2
+         * @type {Phaser.GameObjects.Image}
+         */
+        let z2=this.add.image(505,300, 'z2').setOrigin(0,1);
+        z2.setScale(0.65);
+        //tree1.setTintFill(0xFF0000); // pratique pour dbugger
+        z2.angle=0;
+        this.groundContainer.add(z2);
+        /**
+         * z3
+         * @type {Phaser.GameObjects.Image}
+         */
+        let z3=this.add.image(1000,390, 'z3').setOrigin(0,1);
+        z3.setScale(0.65);
+        //tree1.setTintFill(0xFF0000); // pratique pour dbugger
+        z3.angle=0;
+        this.groundContainer.add(z3);
+        /**
+         * z4
+         * @type {Phaser.GameObjects.Image}
+         */
+        let z4=this.add.image(1400,390, 'z4').setOrigin(0,1);
+        z4.setScale(0.65);
+        //tree1.setTintFill(0xFF0000); // pratique pour dbugger
+        z4.angle=0;
+        this.groundContainer.add(z4);
+        /**
+         * z5
+         * @type {Phaser.GameObjects.Image}
+         */
+        let z5=this.add.image(1700,330, 'z5').setOrigin(0,1);
+        z5.setScale(0.65);
+        //tree1.setTintFill(0xFF0000); // pratique pour dbugger
+        z5.angle=5;
+        this.groundContainer.add(z5);
         /**
          * Arbre a gauche de l'ecran
          * @type {Phaser.GameObjects.Image}
