@@ -2,6 +2,7 @@
  * ALGO: ceci est une classe...
  * Vous verrez ça plus tard en détail avec Rémi, pour l'instant on n'a pas trop besoin de savoir à quoi ça sert.
  */
+
 class Tableau1 extends Phaser.Scene{
     /**
      * Précharge les assets
@@ -20,6 +21,14 @@ class Tableau1 extends Phaser.Scene{
         }
         for(let i=1; i<=3; i++){
             this.load.image('bg1-tree-'+i, 'assets/level/background-1/bg-tree-'+i+'.png');
+        }
+
+        for(let i=1; i<=10; i++){
+            this.load.image('boy'+i, 'assets/boy/idle/Layer-'+i+'.png')
+        }
+
+        for(let i=1; i<=10; i++){
+            this.load.image('boy2'+i, 'assets/boy/idle2/Layer-'+i+'.png')
         }
 
         //ground (premier plan noir)
@@ -238,6 +247,7 @@ class Tableau1 extends Phaser.Scene{
         this.bg1Container.add(bg1Tree3);
 
         //-------------ground (premier plan noir)---------------------------
+
 
         /**
          * contient tous les éléments du premier plan (noir)
@@ -559,6 +569,8 @@ class Tableau1 extends Phaser.Scene{
             repeat: -1
         });
 
+
+
         this.filterSnow = this.add.sprite(0, 0).setOrigin(0,0);
         this.anims.create({
             key: 'snow',
@@ -599,7 +611,93 @@ class Tableau1 extends Phaser.Scene{
         this.bg2Container.scrollFactorX=0.2*acceleration;
         this.bg1Container.scrollFactorX=0.4*acceleration;
         this.groundContainer.scrollFactorX=acceleration;
+
+
+        this.anim1 = [
+            {key:'boy21'},
+            {key:'boy22'},
+            {key:'boy23'},
+            {key:'boy24'},
+            {key:'boy25'},
+            {key:'boy26'},
+            {key:'boy27'},
+            {key:'boy28'},
+            {key:'boy29'},
+            {key:'boy210'},
+        ];
+
+        this.anim2 = [
+            {key:'boy1'},
+            {key:'boy2'},
+            {key:'boy3'},
+            {key:'boy4'},
+            {key:'boy5'},
+            {key:'boy6'},
+            {key:'boy7'},
+            {key:'boy8'},
+            {key:'boy9'},
+            {key:'boy10'},
+        ]
+
+
+
+
+        this.boy = this.add.sprite(250, 170).setOrigin(0, 0);
+        this.boy.setScale(.5)
+        this.boyAnimation = this.anims.create({
+            key: 'boy1Anim',
+            frames : this.anim2,
+            frameRate: 16,
+            repeat:-1
+        });
+
+        this.anims.create({
+            key: 'boy2Anim',
+            frames : this.anim1,
+            frameRate: 16,
+        });
+
+
+
+        //this.boy.play('boy1Anim')
+
+        this.input.on('pointerdown', function () {
+
+            if (this.boy.anims.getName() === 'boy1Anim')
+            {
+                this.boy.playAfterRepeat('boy2Anim');
+                this.boy.chain([ 'boy2Anim', 'boy1Anim' ]);
+            }
+
+        }, this);
+
+        this.time.events(50, function () {
+            if (this.boy.anims.getName() === 'boy1Anim')
+            {
+                this.boy.playAfterRepeat('boy2Anim');
+                this.boy.chain([ 'boy2Anim', 'boy1Anim' ]);
+            }
+        }, this);
+
+
+        /*this.playAnim = true;
+        this.boyAnimation.on(this.playAnim, function () {
+            if (this.boy.anims.getName() === 'boy1Anim')
+            {
+                this.boy.playAfterRepeat('boy2Anim');
+                this.boy.chain([ 'boy2Anim', 'boy1Anim' ]);
+            }
+        }, this);*/
+
+        /*if(playAnim2) {
+            if (this.boy.anims.getName() === 'boy1Anim') {
+                this.boy.playAfterRepeat('boy2Anim');
+                this.boy.chain(['boy2Anim', 'boy1Anim']);
+            }
+        }*/
+
     }
+
     /**
      * Définit ce qui se passe quand on appuie ou relache une touche du clavier
      * ALGO : ceci est une fonction ou méthode
@@ -628,16 +726,30 @@ class Tableau1 extends Phaser.Scene{
                     break;
             }
         });
+
+
+
     }
+
+    /*playIdleBoy(){
+        let rand = Phaser.Math.Between(1, 2);
+        if (rand === 1){
+            this.boy.play('boy1Anim');
+        }
+        else if (rand === 2){
+            this.boy.play('boy1Anim')
+        }
+    }*/
+
 
     /**
      * Cette fonction s'exécute en boucle (à peu près 60 fois par secondes)
      */
-    update(){
+    update() {
         //déplacement de la caméra
-        this.cameras.main.scrollX+=this.speed; // on aurait pu écrire : this.cameras.main.scrollX= this.cameras.main.scrollX + this.speed;
-        console.log(this.cameras.main.scrollX);
-        if(this.cameras.main.scrollX >=250){
+        this.cameras.main.scrollX += this.speed; // on aurait pu écrire : this.cameras.main.scrollX= this.cameras.main.scrollX + this.speed;
+        //console.log(this.cameras.main.scrollX);
+        if (this.cameras.main.scrollX >= 250) {
             this.filterBloody.play('bloody', true)
             //this.filterFilm.play('film', false)
             /*this.filterBloody.frame = [
@@ -645,14 +757,14 @@ class Tableau1 extends Phaser.Scene{
                 {key:'filterBloody1'},
                 {key:'filterBloody1'},
             ];*/
-        }
-        else if (this.cameras.main.scrollX <250){
+        } else if (this.cameras.main.scrollX < 250) {
             this.filterBloody.stop();
         }
 
-        //petit effet de vibrance sur le filtre film au tout premier plan
-        this.filterFilm.setAlpha(Phaser.Math.Between(95,100)/100)
-    }
 
+
+        //petit effet de vibrance sur le filtre film au tout premier plan
+        this.filterFilm.setAlpha(Phaser.Math.Between(95, 100) / 100)
+    }
 
 }
