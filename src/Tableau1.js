@@ -639,11 +639,14 @@ class Tableau1 extends Phaser.Scene{
             {key:'boy10'},
         ]
 
+        this.
 
 
-
-        this.boy = this.add.sprite(250, 170).setOrigin(0, 0);
-        this.boy.setScale(.5)
+        this.boy1 = this.add.sprite(250, 170).setOrigin(0, 0);
+        this.boy2 = this.add.sprite(350, 170).setOrigin(0, 0);
+        this.boy3 = this.add.sprite(450, 170).setOrigin(0, 0);
+        this.boy4 = this.add.sprite(250, 170).setOrigin(0, 0);
+        this.boy1.setScale(.5)
         this.boyAnimation = this.anims.create({
             key: 'boy1Anim',
             frames : this.anim2,
@@ -657,11 +660,28 @@ class Tableau1 extends Phaser.Scene{
             frameRate: 16,
         });
 
+        this.boy1.play('boy1Anim')
+
+        function onEvent ()
+        {
+            if (this.boy1.anims.getName() === 'boy1Anim')
+            {
+                this.boy1.playAfterRepeat('boy2Anim');
+                this.boy1.chain([ 'boy1Anim' ]);
+            }
+            console.log('je suis dedans')
+        }
+
+        var timedEvent
+        var rand
+        //rand = Phaser.Math.Between(2000, 4000);
+        timedEvent = this.time.addEvent({ delay: 5000, callback: onEvent, callbackScope: this, repeat: -1 });
+
 
 
         //this.boy.play('boy1Anim')
 
-        this.input.on('pointerdown', function () {
+        /*this.input.on('pointerdown', function () {
 
             if (this.boy.anims.getName() === 'boy1Anim')
             {
@@ -669,15 +689,15 @@ class Tableau1 extends Phaser.Scene{
                 this.boy.chain([ 'boy2Anim', 'boy1Anim' ]);
             }
 
-        }, this);
+        }, this);*/
 
-        this.time.events(50, function () {
+        /*this.time.events(50, function () {
             if (this.boy.anims.getName() === 'boy1Anim')
             {
                 this.boy.playAfterRepeat('boy2Anim');
                 this.boy.chain([ 'boy2Anim', 'boy1Anim' ]);
             }
-        }, this);
+        }, this);*/
 
 
         /*this.playAnim = true;
@@ -740,8 +760,6 @@ class Tableau1 extends Phaser.Scene{
             this.boy.play('boy1Anim')
         }
     }*/
-
-
     /**
      * Cette fonction s'exécute en boucle (à peu près 60 fois par secondes)
      */
