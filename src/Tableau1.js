@@ -31,6 +31,22 @@ class Tableau1 extends Phaser.Scene{
             this.load.image('boy2'+i, 'assets/boy/idle2/Layer-'+i+'.png')
         }
 
+        for(let i=1; i<=10; i++){
+            this.load.image('thesecondBoy'+i, 'assets/boy2/idle/Layer-'+i+'.png')
+        }
+
+        for(let i=1; i<=10; i++){
+            this.load.image('thesecondBoy2'+i, 'assets/boy2/idle2/Layer-'+i+'.png')
+        }
+
+        for(let i=1; i<=10; i++){
+            this.load.image('ennemy1'+i, 'assets/ennemy1/idle/Layer-'+i+'.png')
+        }
+
+        for(let i=1; i<=6   ; i++){
+            this.load.image('ennemy2'+i, 'assets/ennemy2/idle/Layer-'+i+'.png')
+        }
+
         //ground (premier plan noir)
         this.load.image('gMid', 'assets/level/ground/g-mid.png');
         this.load.image('gRight', 'assets/level/ground/g-right.png');
@@ -639,15 +655,66 @@ class Tableau1 extends Phaser.Scene{
             {key:'boy10'},
         ]
 
-        this.
+        this.boy2Anim1 = [
+            {key:'thesecondBoy1'},
+            {key:'thesecondBoy2'},
+            {key:'thesecondBoy3'},
+            {key:'thesecondBoy4'},
+            {key:'thesecondBoy5'},
+            {key:'thesecondBoy6'},
+            {key:'thesecondBoy7'},
+            {key:'thesecondBoy8'},
+            {key:'thesecondBoy9'},
+            {key:'thesecondBoy10'},
+        ]
+
+        this.boy2Anim2 = [
+            {key:'thesecondBoy21'},
+            {key:'thesecondBoy22'},
+            {key:'thesecondBoy23'},
+            {key:'thesecondBoy24'},
+            {key:'thesecondBoy25'},
+            {key:'thesecondBoy26'},
+            {key:'thesecondBoy27'},
+            {key:'thesecondBoy28'},
+            {key:'thesecondBoy29'},
+            {key:'thesecondBoy210'},
+        ]
+
+        this.ennemy1Anim1 = [
+            {key:'ennemy11'},
+            {key:'ennemy12'},
+            {key:'ennemy13'},
+            {key:'ennemy14'},
+            {key:'ennemy15'},
+            {key:'ennemy16'},
+            {key:'ennemy17'},
+            {key:'ennemy18'},
+            {key:'ennemy19'},
+            {key:'ennemy110'},
+        ]
+
+        this.ennemy2Anim2 = [
+            {key:'ennemy21'},
+            {key:'ennemy22'},
+            {key:'ennemy23'},
+            {key:'ennemy24'},
+            {key:'ennemy25'},
+            {key:'ennemy26'},
+        ]
 
 
         this.boy1 = this.add.sprite(250, 170).setOrigin(0, 0);
-        this.boy2 = this.add.sprite(350, 170).setOrigin(0, 0);
-        this.boy3 = this.add.sprite(450, 170).setOrigin(0, 0);
-        this.boy4 = this.add.sprite(250, 170).setOrigin(0, 0);
+        this.boy2 = this.add.sprite(800, 170).setOrigin(0, 0);
+        this.ennemy1 = this.add.sprite(150, 140).setOrigin(0, 0);
+        this.ennemy2 = this.add.sprite(550, 170).setOrigin(0, 0);
+
         this.boy1.setScale(.5)
-        this.boyAnimation = this.anims.create({
+        this.boy2.setScale(-.5, .5)
+        this.ennemy1.setScale(.5)
+        this.ennemy2.setScale(.5)
+
+        this.anims.create({
             key: 'boy1Anim',
             frames : this.anim2,
             frameRate: 16,
@@ -660,7 +727,37 @@ class Tableau1 extends Phaser.Scene{
             frameRate: 16,
         });
 
+        this.anims.create({
+            key: 'boy2Anim1',
+            frames : this.boy2Anim1,
+            frameRate: 16,
+            repeat :-1
+        });
+
+        this.anims.create({
+            key: 'boy2Anim2',
+            frames : this.boy2Anim2,
+            frameRate: 16,
+        });
+
+        this.anims.create({
+            key: 'ennemy1Anim1',
+            frames : this.ennemy1Anim1,
+            frameRate: 16,
+            repeat : -1
+        });
+
+        this.anims.create({
+            key: 'ennemy2Anim1',
+            frames : this.ennemy2Anim2,
+            frameRate: 16,
+            repeat : -1
+        });
+
         this.boy1.play('boy1Anim')
+        this.boy2.play('boy2Anim1')
+        this.ennemy1.play('ennemy1Anim1')
+        this.ennemy2.play('ennemy2Anim1')
 
         function onEvent ()
         {
@@ -668,6 +765,11 @@ class Tableau1 extends Phaser.Scene{
             {
                 this.boy1.playAfterRepeat('boy2Anim');
                 this.boy1.chain([ 'boy1Anim' ]);
+            }
+            if (this.boy2.anims.getName() === 'boy2Anim1')
+            {
+                this.boy2.playAfterRepeat('boy2Anim2');
+                this.boy2.chain([ 'boy2Anim1' ]);
             }
             console.log('je suis dedans')
         }
