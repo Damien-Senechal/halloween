@@ -4,6 +4,8 @@
  */
 
 class Tableau1 extends Phaser.Scene{
+    player;
+    cursors;
     /**
      * Précharge les assets
      */
@@ -818,6 +820,16 @@ class Tableau1 extends Phaser.Scene{
                 this.boy.chain(['boy2Anim', 'boy1Anim']);
             }
         }*/
+
+
+        var tween = this.tweens.add({
+            targets: this.boy1,
+            x: 600,
+            duration: 3000,
+            ease: 'Power2',
+            loop: -1
+        });
+
 
 
     }
