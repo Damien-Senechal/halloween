@@ -717,40 +717,40 @@ class Tableau1 extends Phaser.Scene{
         this.anims.create({
             key: 'boy1Anim',
             frames : this.anim2,
-            frameRate: 16,
+            frameRate: 20,
             repeat:-1
         });
 
         this.anims.create({
             key: 'boy2Anim',
             frames : this.anim1,
-            frameRate: 16,
+            frameRate: 20,
         });
 
         this.anims.create({
             key: 'boy2Anim1',
             frames : this.boy2Anim1,
-            frameRate: 16,
+            frameRate: 20,
             repeat :-1
         });
 
         this.anims.create({
             key: 'boy2Anim2',
             frames : this.boy2Anim2,
-            frameRate: 16,
+            frameRate: 20,
         });
 
         this.anims.create({
             key: 'ennemy1Anim1',
             frames : this.ennemy1Anim1,
-            frameRate: 16,
+            frameRate: 20,
             repeat : -1
         });
 
         this.anims.create({
             key: 'ennemy2Anim1',
             frames : this.ennemy2Anim2,
-            frameRate: 16,
+            frameRate: 30,
             repeat : -1
         });
 
