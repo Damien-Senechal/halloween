@@ -120,6 +120,7 @@ class Tableau1 extends Phaser.Scene{
      */
     create(){
 
+
         /**
          * Fond très clair avec une trame
          * @type {Phaser.GameObjects.Sprite}
@@ -817,6 +818,7 @@ class Tableau1 extends Phaser.Scene{
                 this.boy.chain(['boy2Anim', 'boy1Anim']);
             }
         }*/
+
 
     }
 
